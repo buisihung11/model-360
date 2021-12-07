@@ -81,8 +81,8 @@
         $(".image__toolbar-1 .play")
           .first()
           .click(function () {
-            console.log(`test`);
             $("#image").reel(auto ? ":pause" : ":play");
+            auto = !auto;
           });
         $(".image__toolbar-1 .next")
           .first()
@@ -107,6 +107,7 @@
         $(".image__toolbar-2 .play")
           .first()
           .click(function () {
+            auto2 = !auto2;
             $("#image2").reel(auto2 ? ":pause" : ":play");
           });
         $(".image__toolbar-2 .next")
@@ -131,6 +132,7 @@
         $(".image__toolbar-3 .play")
           .first()
           .click(function () {
+            auto3 = !auto3;
             $("#image3").reel(auto3 ? ":pause" : ":play");
           });
         $(".image__toolbar-3 .next")
