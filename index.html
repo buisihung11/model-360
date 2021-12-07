@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <title>Model app</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="container-lg">
+    <div class="text-center">
+      <h2>Model app</h2>
+    </div>
+
+    <div class="text-center mx-auto py-5" style="width: 350px">
+      <img
+        src="assets/img/model1/min/TIEN1147-min.JPG"
+        class="reel"
+        id="image"
+        width="350px"
+        height="auto"
+      />
+      <div class="d-flex justify-content-between pt-2">
+        <div class="btn" id="prev">Prev frame</div>
+        <div class="btn" id="play">Play</div>
+        <div class="btn" id="next">Next frame</div>
+      </div>
+    </div>
+    <div class="text-center mx-auto py-5" style="width: 350px">
+      <img
+        src="assets/img/model2/TIEN1172.jpg"
+        class="reel"
+        id="image2"
+        width="350px"
+        height="auto"
+      />
+      <div class="d-flex justify-content-between pt-2">
+        <div class="btn" id="prev">Prev frame</div>
+        <div class="btn" id="play">Play</div>
+        <div class="btn" id="next">Next frame</div>
+      </div>
+    </div>
+    <div class="text-center mx-auto py-5" style="width: 350px">
+      <img
+        src="assets/img/model3/TIEN6799.jpg"
+        class="reel"
+        id="image3"
+        width="350px"
+        height="auto"
+      />
+      <div class="d-flex justify-content-between pt-2">
+        <div class="btn" id="prev">Prev frame</div>
+        <div class="btn" id="play">Play</div>
+        <div class="btn" id="next">Next frame</div>
+      </div>
+    </div>
+
+    <!-- <a href="https://github.com/nick-jonas/threesixtyjs/tarball/master" class="download-btn"><h1>download</h1></a></div><br/> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="assets/js/jquery.threesixty.js"></script>
+    <script src="https://code.vostrel.net/jquery.reel-bundle.js"></script>
+    <script>
+      $(document).ready(function () {
+        var auto = true;
+        var auto2 = true;
+        $("#image").reel({
+          images: "assets/img/model1/min/TIEN####-min.JPG|1147..1170",
+          frames: 1,
+          loops: true,
+          speed: 0.3,
+          revolution: 100,
+          indicator: 5,
+        });
+        $("#image #prev").click(function () {
+          $("#image").reel(":stepRight");
+        });
+        $("#image #play").click(function () {
+          $("#image").reel(auto ? ":pause" : ":play");
+        });
+        $("#image #next").click(function () {
+          $("#image").reel(":stepLeft");
+        });
+
+        $("#image2").reel({
+          images: "assets/img/model2/TIEN####.JPG|1172..1196",
+          frames: 1,
+          loops: true,
+          speed: 0.3,
+          revolution: 100,
+          indicator: 5,
+        });
+        $("#image2 #prev").click(function () {
+          $("#image2").reel(":stepRight");
+        });
+        $("#image2 #play").click(function () {
+          $("#image2").reel(auto2 ? ":pause" : ":play");
+        });
+        $("#image2 #next").click(function () {
+          $("#image2").reel(":stepLeft");
+        });
+
+        $("#image3").reel({
+          images: "assets/img/model3/TIEN####.JPG|6799..6825",
+          frames: 1,
+          loops: true,
+          speed: 0.3,
+          revolution: 100,
+          indicator: 5,
+        });
+        $("#image3 #prev").click(function () {
+          $("#image3").reel(":stepRight");
+        });
+        $("#image3 #play").click(function () {
+          $("#image3").reel(auto2 ? ":pause" : ":play");
+        });
+        $("#image3 #next").click(function () {
+          $("#image3").reel(":stepLeft");
+        });
+      });
+    </script>
+  </body>
+</html>
