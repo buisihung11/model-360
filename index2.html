@@ -1,0 +1,295 @@
+<html>
+  <head>
+    <title>Model app</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="imagerotator/html/css/basic.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .slider {
+        padding: 14px 0;
+      }
+      #image-reel .reel-preloader,
+      #image3-reel .reel-preloader,
+      #image4-reel .reel-preloader {
+        width: 100% !important;
+        height: 100%;
+        overflow: hidden;
+        background-color: #dddbdd;
+      }
+
+      #image-reel .reel-preloader::after,
+      #image3-reel .reel-preloader::after,
+      #image4-reel .reel-preloader::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0,
+          rgba(255, 255, 255, 0.2) 20%,
+          rgba(255, 255, 255, 0.5) 60%,
+          rgba(255, 255, 255, 0)
+        );
+        animation: shimmer 2s infinite;
+        content: "";
+      }
+
+      @keyframes shimmer {
+        100% {
+          transform: translateX(100%);
+        }
+      }
+    </style>
+  </head>
+  <body class="container">
+    <div class="text-center pt-4">
+      <h2>Model app (Desktop version)</h2>
+      <a href="./index.html">Mobile version (520)</a>
+    </div>
+    <div style="background-color: #f8f7f1">
+      <div class="text-center mx-auto py-5" style="width: 1040px">
+        <img
+          src="./assets/img/laptop-1.png"
+          width="1040"
+          height="1560"
+          class="reel"
+          id="image4"
+          data-image="./assets/img/laptop-1.png"
+        />
+        <div class="text-center">
+          <input
+            type="range"
+            min="1"
+            max="26"
+            value="1"
+            class="slider slider4"
+          />
+        </div>
+        <div class="d-flex justify-content-between pt-2 image__toolbar-4">
+          <div class="btn prev">Prev frame</div>
+          <div class="btn play">Play</div>
+          <div class="btn next">Next frame</div>
+        </div>
+      </div>
+
+      <div class="text-center mx-auto py-5" style="width: 1040px">
+        <img
+          src="./assets/img/sprite4_1.png"
+          width="1040"
+          height="1560"
+          class="reel"
+          id="image3"
+          data-image="./assets/img/sprite4_1.png"
+        />
+        <div class="text-center">
+          <input
+            type="range"
+            min="1"
+            max="27"
+            value="1"
+            class="slider slider3"
+          />
+        </div>
+        <div class="d-flex justify-content-between pt-2 image__toolbar-3">
+          <div class="btn prev">Prev frame</div>
+          <div class="btn play">Play</div>
+          <div class="btn next">Next frame</div>
+        </div>
+      </div>
+
+      <div class="text-center mx-auto py-5" style="width: 1040px">
+        <img
+          src="./assets/img/sprite2_1.png"
+          width="1040"
+          height="1560"
+          class="reel"
+          id="image"
+          data-image="./assets/img/sprite2_1.png"
+        />
+        <div class="text-center">
+          <input
+            type="range"
+            min="1"
+            max="24"
+            value="1"
+            class="slider slider1"
+          />
+        </div>
+        <div class="d-flex justify-content-between pt-2 image__toolbar-1">
+          <div class="btn prev">Prev frame</div>
+          <div class="btn play">Play</div>
+          <div class="btn next">Next frame</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <a href="https://github.com/nick-jonas/threesixtyjs/tarball/master" class="download-btn"><h1>download</h1></a></div><br/> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="assets/js/jquery.threesixty.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.reel@1.3.1/jquery.reel.js"></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="imagerotator/html/css/basic.css"
+    />
+    <script
+      type="text/javascript"
+      src="imagerotator/html/js/imagerotator.js"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        var auto = false;
+        var auto2 = false;
+        var auto3 = false;
+
+        $("#image")
+          .reel({
+            image: "./assets/img/sprite2_1.png",
+            frames: 25,
+            loops: true,
+            revolution: 100,
+            indicator: 5,
+            footage: 25,
+          })
+          .bind("frameChange", function (e, d, frame) {
+            updateRange(".slider1", frame);
+          });
+        $(".image__toolbar-1 .prev")
+          .first()
+          .click(function () {
+            $("#image").reel(":stepRight");
+          });
+        $(".image__toolbar-1 .play")
+          .first()
+          .click(function () {
+            auto = !auto;
+            $("#image").reel("speed", auto ? 0.3 : 0);
+            $("#image").reel(auto ? ":play" : ":pause");
+          });
+        $(".image__toolbar-1 .next")
+          .first()
+          .click(function () {
+            $("#image").reel(":stepLeft");
+          });
+
+        $("#image2")
+          .reel({
+            image: "./assets/img/sprite3.png",
+            frames: 24,
+            loops: true,
+            revolution: 100,
+            indicator: 5,
+            footage: 24,
+          })
+          .bind("frameChange", function (e, d, frame) {
+            updateRange(".slider2", frame);
+          });
+        $(".image__toolbar-2 .prev")
+          .first()
+          .click(function () {
+            $("#image2").reel(":stepRight");
+          });
+        $(".image__toolbar-2 .play")
+          .first()
+          .click(function () {
+            auto = !auto;
+            $("#image2").reel("speed", auto ? 0.3 : 0);
+            $("#image2").reel(auto ? ":play" : ":pause");
+          });
+        $(".image__toolbar-2 .next")
+          .first()
+          .click(function () {
+            $("#image2").reel(":stepLeft");
+          });
+
+        $("#image3")
+          .reel({
+            image: "./assets/img/sprite4_1.png",
+            frames: 27,
+            indicator: 5,
+            footage: 27,
+          })
+          .bind("frameChange", function (e, d, frame) {
+            updateRange(".slider3", frame);
+          });
+        $(".image__toolbar-3 .prev")
+          .first()
+          .click(function () {
+            $("#image3").reel(":stepRight");
+          });
+        $(".image__toolbar-3 .play")
+          .first()
+          .click(function () {
+            auto3 = !auto3;
+            $("#image3").reel("speed", auto3 ? 0.3 : 0);
+            $("#image3").reel(auto3 ? ":play" : ":pause");
+          });
+        $(".image__toolbar-3 .next")
+          .first()
+          .click(function () {
+            $("#image3").reel(":stepLeft");
+          });
+
+        $("#image4")
+          .reel({
+            image: "./assets/img/laptop-1.png",
+            frames: 26,
+            indicator: 5,
+            footage: 26,
+          })
+          .bind("frameChange", function (e, d, frame) {
+            updateRange(".slider4", frame);
+          });
+        $(".image__toolbar-4 .prev")
+          .first()
+          .click(function () {
+            $("#image4").reel(":stepRight");
+          });
+        $(".image__toolbar-4 .play")
+          .first()
+          .click(function () {
+            auto3 = !auto3;
+            $("#image4").reel("speed", auto3 ? 0.3 : 0);
+            $("#image4").reel(auto3 ? ":play" : ":pause");
+          });
+        $(".image__toolbar-4 .next")
+          .first()
+          .click(function () {
+            $("#image4").reel(":stepLeft");
+          });
+      });
+
+      function updateRange(path, value) {
+        $(path).val(value);
+      }
+
+      $(".slider3").on("input", function (e) {
+        // auto3 = !auto3;
+        // $("#image3").reel(auto3 ? ":play" : ":pause");
+        $("#image3").reel("frame", e.target.value);
+      });
+      $(".slider2").on("input", function (e) {
+        // auto3 = !auto3;
+        // $("#image3").reel(auto3 ? ":play" : ":pause");
+        $("#image2").reel("frame", e.target.value);
+      });
+      $(".slider1").on("input", function (e) {
+        // auto3 = !auto3;
+        // $("#image3").reel(auto3 ? ":play" : ":pause");
+        $("#image").reel("frame", e.target.value);
+      });
+    </script>
+  </body>
+</html>

@@ -16,6 +16,7 @@
       .slider {
         padding: 14px 0;
       }
+      #image-reel .reel-preloader,
       #image3-reel .reel-preloader {
         width: 100% !important;
         height: 100%;
@@ -23,6 +24,7 @@
         background-color: #dddbdd;
       }
 
+      #image-reel .reel-preloader::after,
       #image3-reel .reel-preloader::after {
         position: absolute;
         top: 0;
@@ -50,47 +52,91 @@
   </head>
   <body class="container">
     <div class="text-center pt-4">
-      <h2>Model app</h2>
+      <h2>Model app (Mobile version)</h2>
+      <a href="./index2.html">Tablet version (1024)</a>
+      <br />
+      <a href="./index3.html">Mobile version with higher resolution</a>
     </div>
 
-    <div class="text-center mx-auto py-5" style="width: 350px">
-      <img
-        src="./assets/img/sprite4.png"
-        width="350"
-        height="480"
-        class="reel"
-        id="image3"
-        data-image="./assets/img/sprite4.png"
-      />
-      <div class="text-center">
-        <input type="range" min="1" max="27" value="1" class="slider slider3" />
+    <div style="background-color: #f8f7f1">
+      <div class="text-center mx-auto py-5" style="width: 350px">
+        <img
+          src="./assets/img/sprite4.png"
+          loading="lazy"
+          width="350"
+          height="525"
+          class="reel"
+          id="image3"
+          data-image="./assets/img/sprite4.png"
+        />
+        <div class="text-center">
+          <input
+            type="range"
+            min="1"
+            max="27"
+            value="1"
+            class="slider slider3"
+          />
+        </div>
+        <div class="d-flex justify-content-between pt-2 image__toolbar-3">
+          <div class="btn prev">Prev frame</div>
+          <div class="btn play">Play</div>
+          <div class="btn next">Next frame</div>
+        </div>
       </div>
-      <div class="d-flex justify-content-between pt-2 image__toolbar-3">
-        <div class="btn prev">Prev frame</div>
-        <div class="btn play">Play</div>
-        <div class="btn next">Next frame</div>
+
+      <div class="text-center mx-auto py-5" style="width: 350px">
+        <img
+          src="./assets/img/sprite3.png"
+          loading="lazy"
+          width="350"
+          height="525"
+          class="reel"
+          id="image2"
+          data-image="./assets/img/sprite3.png"
+        />
+        <div class="text-center">
+          <input
+            type="range"
+            min="1"
+            max="24"
+            value="1"
+            class="slider slider2"
+          />
+        </div>
+        <div class="d-flex justify-content-between pt-2 image__toolbar-2">
+          <div class="btn prev">Prev frame</div>
+          <div class="btn play">Play</div>
+          <div class="btn next">Next frame</div>
+        </div>
+      </div>
+
+      <div class="text-center mx-auto py-5" style="width: 350px">
+        <img
+          src="./assets/img/sprite2.png"
+          loading="lazy"
+          width="350"
+          height="525"
+          class="reel"
+          id="image"
+          data-image="./assets/img/sprite2.png"
+        />
+        <div class="text-center">
+          <input
+            type="range"
+            min="1"
+            max="24"
+            value="1"
+            class="slider slider1"
+          />
+        </div>
+        <div class="d-flex justify-content-between pt-2 image__toolbar-1">
+          <div class="btn prev">Prev frame</div>
+          <div class="btn play">Play</div>
+          <div class="btn next">Next frame</div>
+        </div>
       </div>
     </div>
-
-    <div class="text-center mx-auto py-5" style="width: 350px">
-      <img
-        src="./assets/img/sprite3.png"
-        width="350"
-        height="480"
-        class="reel"
-        id="image"
-        data-image="./assets/img/sprite3.png"
-      />
-      <div class="text-center">
-        <input type="range" min="1" max="24" value="1" class="slider slider1" />
-      </div>
-      <div class="d-flex justify-content-between pt-2 image__toolbar-1">
-        <div class="btn prev">Prev frame</div>
-        <div class="btn play">Play</div>
-        <div class="btn next">Next frame</div>
-      </div>
-    </div>
-
     <!-- <a href="https://github.com/nick-jonas/threesixtyjs/tarball/master" class="download-btn"><h1>download</h1></a></div><br/> -->
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -139,6 +185,36 @@
           .first()
           .click(function () {
             $("#image").reel(":stepLeft");
+          });
+
+        $("#image2")
+          .reel({
+            image: "./assets/img/sprite3.png",
+            frames: 24,
+            loops: true,
+            revolution: 100,
+            indicator: 5,
+            footage: 24,
+          })
+          .bind("frameChange", function (e, d, frame) {
+            updateRange(".slider2", frame);
+          });
+        $(".image__toolbar-2 .prev")
+          .first()
+          .click(function () {
+            $("#image2").reel(":stepRight");
+          });
+        $(".image__toolbar-2 .play")
+          .first()
+          .click(function () {
+            auto = !auto;
+            $("#image2").reel("speed", auto ? 0.3 : 0);
+            $("#image2").reel(auto ? ":play" : ":pause");
+          });
+        $(".image__toolbar-2 .next")
+          .first()
+          .click(function () {
+            $("#image2").reel(":stepLeft");
           });
 
         $("#image3")
